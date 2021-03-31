@@ -8,28 +8,65 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
-
+    
+    @IBOutlet weak var newItemTextField: UITextField!
+    var items: [item] = []
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
-        var items: [item] = []
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.dataSource = self
-        let item1 = item(name: "Milk")
-        let item2 = item(name: "Eggs")
+        let item1 = item(name: "Milk", quantity: 2)
+        let item2 = item(name: "Eggs", quantity: 5)
     items = [item1, item2]
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return items.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cellid", for: indexPath)
-        cell.textLabel?.text = "Hello"
+        let currentItem = items[indexPath.row]
+        cell.textLabel?.text = currentItem.name
+        cell.detailTextLabel?.text = "Quantity: \(currentItem.quantity)"
         return cell
     }
         
+    @IBAction func whenAddItemButtonPressed(_ sender: UIBarButtonItem) {
+        if let newItemName = newItemTextField.text{
+            let newItem = item(name: newItemName, quantity: 1)
+            items.append(newItem)
+            tableView.reloadData()
+            
+            
+        }
     }
+    
+    
+    
+    @IBAction func deleteRow(_ sender: UITapGestureRecognizer) {
+    
+        let point = sender.location(in: tableView)
+        for row in tableView.visibleCells {
+            if row.frame.contains(point) {
+                tableView.delete(row)
+            }
+            
+            
+        }
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            items.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
+        
+    }
+    
+    
+}
 
 
 

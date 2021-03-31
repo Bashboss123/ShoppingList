@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC5BB1A02614320B00D84019 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5BB19F2614320B00D84019 /* DetailViewController.swift */; };
 		DC90952826118F39002CF5DF /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90952726118F39002CF5DF /* Item.swift */; };
 		DCF8C997261181D20003A723 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8C996261181D20003A723 /* AppDelegate.swift */; };
 		DCF8C999261181D20003A723 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF8C998261181D20003A723 /* SceneDelegate.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC5BB19F2614320B00D84019 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DC90952726118F39002CF5DF /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DCF8C993261181D20003A723 /* ShoppingList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCF8C996261181D20003A723 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				DCF8C996261181D20003A723 /* AppDelegate.swift */,
 				DCF8C998261181D20003A723 /* SceneDelegate.swift */,
 				DCF8C99A261181D20003A723 /* ViewController.swift */,
+				DC5BB19F2614320B00D84019 /* DetailViewController.swift */,
 				DC90952726118F39002CF5DF /* Item.swift */,
 				DCF8C99C261181D20003A723 /* Main.storyboard */,
 				DCF8C99F261181D70003A723 /* Assets.xcassets */,
@@ -263,6 +266,7 @@
 			files = (
 				DC90952826118F39002CF5DF /* Item.swift in Sources */,
 				DCF8C99B261181D20003A723 /* ViewController.swift in Sources */,
+				DC5BB1A02614320B00D84019 /* DetailViewController.swift in Sources */,
 				DCF8C997261181D20003A723 /* AppDelegate.swift in Sources */,
 				DCF8C999261181D20003A723 /* SceneDelegate.swift in Sources */,
 			);
