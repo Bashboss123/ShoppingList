@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var newItemTextField: UITextField!
     var items: [item] = []
     
+    
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         
@@ -20,6 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         tableView.dataSource = self
         let item1 = item(name: "Milk", quantity: 2)
         let item2 = item(name: "Eggs", quantity: 5)
+    
     items = [item1, item2]
     }
 
@@ -63,6 +65,26 @@ class ViewController: UIViewController, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
         
+    }
+    
+
+    @IBAction func onTap(_ sender: UITapGestureRecognizer) {
+        let point = sender.location(in: tableView)
+        for row in tableView.visibleCells {
+            if row.frame.contains(point) {
+                performSegue(withIdentifier: "Edit", sender: nil)
+            }
+            
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let indexPath = tableView.indexPathForSelectedRow {
+    let item = items[indexPath.row]
+       
+    let vc = segue.destination as! DetailViewController
+    
+    vc.item = item
+    }
     }
     
     

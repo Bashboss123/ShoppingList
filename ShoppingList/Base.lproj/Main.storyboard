@@ -44,6 +44,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="xH5-JR-LEu" kind="show" id="qWK-bc-DDA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -64,10 +67,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="lMm-5c-Rds">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter new item" textAlignment="natural" minimumFontSize="17" id="Nvv-1U-Ux7">
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter new item" minimumFontSize="17" clearButtonMode="always" id="Nvv-1U-Ux7">
                             <rect key="frame" x="145" y="5" width="124.5" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="HuJ-96-pHD">
@@ -84,7 +87,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="vNd-Zf-ACb">
                     <connections>
-                        <action selector="deleteRow:" destination="BYZ-38-t0r" id="lRe-W3-2JW"/>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="0vi-WX-jvm"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -98,10 +101,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6M-iD-pDS">
-                                <rect key="frame" x="186" y="144" width="42" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHk-zr-sOb">
+                                <rect key="frame" x="151" y="196" width="113" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Change quantity"/>
+                                <connections>
+                                    <action selector="changeQuantityButton:" destination="xH5-JR-LEu" eventType="touchUpInside" id="Mkw-4N-aw9"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fu9-Nh-U61">
+                                <rect key="frame" x="141" y="124" width="133" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6M-iD-pDS">
+                                <rect key="frame" x="94" y="285" width="226" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -109,10 +126,16 @@
                         <viewLayoutGuide key="safeArea" id="ukU-0N-kPW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="OgB-CP-kGZ"/>
+                    <connections>
+                        <outlet property="detailViewController" destination="O6M-iD-pDS" id="1wN-Ll-P3l"/>
+                        <outlet property="newQuantityTextField" destination="Fu9-Nh-U61" id="bNn-c7-Akj"/>
+                        <outlet property="quantityLabel" destination="O6M-iD-pDS" id="w6v-K4-GeQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4f-Pv-yTW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1869" y="73"/>
+            <point key="canvasLocation" x="1868.1159420289857" y="72.991071428571431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kak-M7-wQc">
