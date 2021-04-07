@@ -45,10 +45,14 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="xH5-JR-LEu" kind="show" id="qWK-bc-DDA"/>
+                                            <segue destination="xH5-JR-LEu" kind="show" identifier="Edit" id="qWK-bc-DDA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="chO-zd-bLu" appends="YES" id="FaA-QP-wTo"/>
+                                    <outletCollection property="gestureRecognizers" destination="wN0-RA-jOm" appends="YES" id="bV5-HQ-jaW"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -60,10 +64,6 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WVJ-Xj-rXg" secondAttribute="trailing" id="VnV-yZ-PGN"/>
                             <constraint firstItem="WVJ-Xj-rXg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="o4W-B4-rLO"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="vNd-Zf-ACb" appends="YES" id="4ff-eF-W2i"/>
-                            <outletCollection property="gestureRecognizers" destination="vNd-Zf-ACb" appends="YES" id="v59-4g-F6m"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="lMm-5c-Rds">
                         <nil key="title"/>
@@ -85,9 +85,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="vNd-Zf-ACb">
+                <tapGestureRecognizer id="chO-zd-bLu" userLabel="Add and Delete">
                     <connections>
-                        <action selector="onTap:" destination="BYZ-38-t0r" id="0vi-WX-jvm"/>
+                        <action selector="add1:" destination="BYZ-38-t0r" id="Iza-X2-shK"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="wN0-RA-jOm">
+                    <connections>
+                        <action selector="onTap:" destination="BYZ-38-t0r" id="m0o-AE-qpt"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -96,6 +101,7 @@
         <!--Detail View Controller-->
         <scene sceneID="mb3-HL-SI8">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K4f-Pv-yTW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="xH5-JR-LEu" customClass="DetailViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kd9-d7-waS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -133,7 +139,6 @@
                         <outlet property="quantityLabel" destination="O6M-iD-pDS" id="w6v-K4-GeQ"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K4f-Pv-yTW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1868.1159420289857" y="72.991071428571431"/>
         </scene>

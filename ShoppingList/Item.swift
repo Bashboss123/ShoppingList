@@ -6,14 +6,24 @@
 //
 
 import Foundation
-class item{
+class Item: Codable
+{
     var name: String
     var quantity: Int
-    init(name: String, quantity: Int) {
+    init(name: String, quantity: Int)
+{
         self.name = name
         self.quantity = quantity
-    }
-    
-   
     
 }
+    enum CodingKeys: String, CodingKey
+    {
+        case name
+        case quantity
+        
+    
+    }
+
+}
+
+
