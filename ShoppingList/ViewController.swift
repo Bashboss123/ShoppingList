@@ -9,9 +9,10 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     
+    @IBOutlet weak var quantityTextField: UITextField!
     @IBOutlet weak var newItemTextField: UITextField!
     var items: [Item] = []
-    
+    let userDeafaults =  UserDefaults.standard
     
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
@@ -19,25 +20,29 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         tableView.dataSource = self
-        let item1 = Item(name: "Milk", quantity: 2)
-        let item2 = Item(name: "Eggs", quantity: 5)
-    
-    items = [item1, item2]
-        if let x = UserDefaults.standard.object(forKey: "items") {
-            
-            items = x as! [Item]
-        }
+        let item1 = Item(name: "Test", quantity: 2)
+        let item2 = Item(name: "Test", quantity: 5)
         
-    }
-    func alert(message: String) -> Int {
-        let alert = UIAlertController(title: "Oh no we ran into a problem ", message: message, preferredStyle: .alert)
-        let okayAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
-            
+    
+   
+      
+        if let savedItems = UserDefaults.standard.data(forKey: "persistenceArray"){
+            print("Found a stored array")
+     if let itemsDecoded = try? JSONDecoder().decode([Item].self, from: savedItems) as? [Item] {
+                items = itemsDecoded
+                print(itemsDecoded)
+                tableView.reloadData()
+            } else {
+                print("Decoding Failed")
+          
+                tableView.reloadData()
+            }
         }
-        alert.addAction(okayAction)
-        present(alert, animated: true, completion: nil)
-        return 0
-    }
+       
+        }
+    
+    
+    
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,12 +58,26 @@ class ViewController: UIViewController, UITableViewDataSource {
         
     @IBAction func whenAddItemButtonPressed(_ sender: UIBarButtonItem) {
         if let newItemName = newItemTextField.text{
-            let newItem = Item(name: newItemName, quantity: 1)
+            if let itemQuantity = quantityTextField.text{
+                if let stringQuantity = Int(itemQuantity) {
+        
+            
+            let newItem = Item(name: newItemName, quantity: stringQuantity)
             items.append(newItem)
+            newItemTextField.text = ""
+                    quantityTextField.text = ""
             tableView.reloadData()
-       let userDeafaults =  UserDefaults.standard
+       
+          
             
-            
+            if let encoded = try? JSONEncoder().encode(items) {
+                UserDefaults.standard.set(encoded, forKey: "persistenceArray")
+                print("Encoded \(newItem.name)")
+            } else {
+                print("Encoding failed")
+            }
+                }
+        }
         }
     }
     
@@ -80,6 +99,13 @@ class ViewController: UIViewController, UITableViewDataSource {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             items.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            if let encoded = try? JSONEncoder().encode(items) {
+                UserDefaults.standard.set(encoded, forKey: "persistenceArray")
+                
+            } else {
+                print("Encoding failed")
+                alert(message: "Encoding failed")
+            }
         }
         
     }
@@ -105,36 +131,16 @@ class ViewController: UIViewController, UITableViewDataSource {
     vc.item = item
     }
     }
-    
-    
-    @IBAction func addAndDelete(_ sender: UITapGestureRecognizer) {
-    
-    let point = sender.location(in: tableView)
-        if point.x > 0 {
-        if let indexPath = tableView.indexPathForSelectedRow {
-                let item = items[indexPath.row]
-                item.quantity += 1
+    func alert(message: String) -> Int {
+        let alert = UIAlertController(title: "Oh no we ran into a problem ", message: message, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "OK", style: .default) { (UIAlertAction) in
             
-                
-                }
-              
-            }
-    }
-        else if point.x < 0 {
-            
-    if let indexPath = tableView.indexPathForSelectedRow {
-        var item = items[indexPath.row]
-        if item.quantity > 0 {
-        item.quantity -= 1
-        } else {
-            alert(message: "Cannot have quantity below 1")
         }
-        }
-    
+        alert.addAction(okayAction)
+        present(alert, animated: true, completion: nil)
+        return 0
     }
     
     
-    
-    
-
-}
+   
+    }
